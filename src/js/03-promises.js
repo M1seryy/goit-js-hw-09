@@ -1,3 +1,7 @@
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 let step = document.querySelector('.step');
 let delay = document.querySelector('.delay');
 let amount = document.querySelector('.amount');
@@ -18,15 +22,14 @@ function formSubmit(e) {
   step = +step.value;
   amount = +amount.value;
   for (let i = 1; i <= amount; i++) {
-    console.log(delay + 'delay', step + 'step', amount);
     delay += step;
     setTimeout(() => {
       createPromise(i, delay)
         .then(({ position, delay }) => {
-          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+          Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
         })
         .catch(({ position, delay }) => {
-          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+          Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
         });
     }, delay);
   }

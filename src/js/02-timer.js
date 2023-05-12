@@ -17,7 +17,7 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (options.defaultDate > selectedDates[0]) {
-        Notify.failure('Please choose a date in the future')
+      Notify.failure('Please choose a date in the future');
     } else {
       startBtn.disabled = false;
       function createTimer() {

@@ -18,12 +18,13 @@ function createPromise(position, delay) {
 }
 function formSubmit(e) {
   e.preventDefault();
-  delay = +delay.value;
   step = +step.value;
   amount = +amount.value;
+  delay = +delay.value;
   for (let i = 1; i <= amount; i++) {
+    let newDelay = delay;
     setTimeout(() => {
-      createPromise(i, delay)
+      createPromise(i, newDelay)
         .then(({ position, delay }) => {
           Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
         })

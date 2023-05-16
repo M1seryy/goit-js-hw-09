@@ -3,6 +3,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const selector = document.getElementById('datetime-picker');
+const input = document.getElementById('datetime-picker');
 const startBtn = document.querySelector('[data-start]');
 const date = new Date();
 const days = document.querySelector('[data-days]');
@@ -21,15 +22,25 @@ const options = {
     } else {
       startBtn.disabled = false;
       function createTimer() {
-        setInterval(() => {
+        input.disabled = true;
+        startBtn.disabled = true;
+        let timer = setInterval(() => {
           let futureDate = new Date(selectedDates[0]);
           let futureDateMs = new Date(selectedDates[0].getTime());
-
           let distance = futureDateMs - Date.now();
           days.textContent = addLeadingZero(convertMs(distance).days);
           hours.textContent = addLeadingZero(convertMs(distance).hours);
           minutes.textContent = addLeadingZero(convertMs(distance).minutes);
           seconds.textContent = addLeadingZero(convertMs(distance).seconds);
+
+          if (
+            days.textContent == '00' &&
+            hours.textContent == '00' &&
+            minutes.textContent == '00' &&
+            seconds.textContent == '00'
+          ) {
+            clearInterval(timer);
+          }
         }, 1000);
       }
       startBtn.addEventListener('click', createTimer);

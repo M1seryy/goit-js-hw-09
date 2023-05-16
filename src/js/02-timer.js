@@ -22,9 +22,9 @@ const options = {
     } else {
       startBtn.disabled = false;
       function createTimer() {
-        input.disabled = true;
-        startBtn.disabled = true;
         let timer = setInterval(() => {
+          input.disabled = true;
+          startBtn.disabled = true;
           let futureDate = new Date(selectedDates[0]);
           let futureDateMs = new Date(selectedDates[0].getTime());
           let distance = futureDateMs - Date.now();

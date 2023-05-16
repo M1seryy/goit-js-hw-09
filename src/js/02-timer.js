@@ -40,6 +40,8 @@ const options = {
             seconds.textContent == '00'
           ) {
             clearInterval(timer);
+            input.disabled = false;
+            startBtn.disabled = false;
           }
         }, 1000);
       }

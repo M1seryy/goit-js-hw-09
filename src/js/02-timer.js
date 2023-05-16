@@ -41,7 +41,6 @@ const options = {
           ) {
             clearInterval(timer);
             input.disabled = false;
-            startBtn.disabled = false;
           }
         }, 1000);
       }
